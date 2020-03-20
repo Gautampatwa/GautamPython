@@ -1,0 +1,350 @@
+from tkinter import *
+from tkinter import ttk
+
+
+window = Tk()
+
+
+def popup(msg):
+
+  pop = Tk()
+  pop.wm_title('Message')
+  #pop.geometry('350x120')
+  l = ttk.Label(pop,text=msg,font =('Verdana', 10))
+  l.pack(side='top',fill='x',pady=15)
+
+  b = ttk.Button(pop,text='Close',command=pop.destroy) 
+  b.pack()
+  pop.mainloop()
+
+
+window.wm_title('CGPA Calculator')
+
+def calculate():
+        
+  d = {'O':10,'E':9,'A':8,'B':7,'C':6,'D':5,'F':0}
+  grade,credit = [],[]
+  
+  try:
+    grade.append(sem1_grade_sub1.get())
+    credit.append(int(sem1_credit_sub1.get()))
+
+    grade.append(sem1_grade_sub2.get())
+    credit.append(int(sem1_credit_sub2.get()))
+
+    grade.append(sem1_grade_sub3.get())
+    credit.append(int(sem1_credit_sub3.get()))
+
+    grade.append(sem1_grade_sub4.get())
+    credit.append(int(sem1_credit_sub4.get()))
+
+    grade.append(sem1_grade_sub5.get())
+    credit.append(int(sem1_credit_sub5.get()))
+
+    grade.append(sem1_grade_sub6.get())
+    credit.append(int(sem1_credit_sub6.get()))
+
+    grade.append(sem2_grade_sub1.get())
+    credit.append(int(sem2_credit_sub1.get()))
+
+    grade.append(sem2_grade_sub2.get())
+    credit.append(int(sem2_credit_sub2.get()))
+
+    grade.append(sem2_grade_sub3.get())
+    credit.append(int(sem2_credit_sub3.get()))
+
+    grade.append(sem2_grade_sub4.get())
+    credit.append(int(sem2_credit_sub4.get()))
+
+    grade.append(sem2_grade_sub5.get())
+    credit.append(int(sem2_credit_sub5.get()))
+
+    grade.append(sem2_grade_sub6.get())
+    credit.append(int(sem2_credit_sub6.get()))
+
+  except ValueError:
+    msg = '*Please provide the valid Credit\nFor example - {1,2,3,4}'
+    popup(msg)
+
+
+  pa1=pa2=0
+  crsum1=crsum2=0
+
+  maxcredit = max(credit)
+  mincredit = min(credit)
+
+  if maxcredit <= 4 and mincredit >= 1:
+    pass
+  else:
+    msg = '*Please provide the valid Credit\nFor example - {1,2,3,4}'
+    popup(msg)
+
+
+  for i in range(12):
+    try:
+      if i < 6:
+        pa1 += d[grade[i]]*credit[i]
+        crsum1 += credit[i]
+      else:
+        pa2 += d[grade[i]]*credit[i]
+        crsum2 += credit[i]
+    except KeyError:
+      msg = '*Plese provide valid grade\nFor example -{O,E,A,B,C,D,F}'
+      popup(msg)
+      
+  CGPA_sem1 = pa1/crsum1
+  CGPA_sem2 = pa2/crsum2
+  TGPA = (CGPA_sem1 + CGPA_sem2)/2
+
+  popup('CGPA of Semester 1 is : %s \nCGPA of Semester 2 is : %s \nTGPA is : %s' % (str(CGPA_sem1)[:4] , str(CGPA_sem2)[:4], str(TGPA)[:4]))
+
+
+
+def clear():
+
+  e21.delete(0,'end')
+  e22.delete(0,'end')
+
+  e31.delete(0,'end')
+  e32.delete(0,'end')
+
+  e41.delete(0,'end')
+  e42.delete(0,'end')
+
+  e51.delete(0,'end')
+  e52.delete(0,'end')
+
+  e61.delete(0,'end')
+  e62.delete(0,'end')
+
+  e71.delete(0,'end')
+  e72.delete(0,'end')
+
+
+  e101.delete(0,'end')
+  e102.delete(0,'end')
+
+  e111.delete(0,'end')
+  e112.delete(0,'end')
+
+  e121.delete(0,'end')
+  e122.delete(0,'end')
+
+  e131.delete(0,'end')
+  e132.delete(0,'end')
+
+  e141.delete(0,'end')
+  e142.delete(0,'end')
+
+  e151.delete(0,'end')
+  e152.delete(0,'end')
+
+
+
+
+sem1 = Label(window,text='Semester 1',font=('Helvetica', 18, 'bold'))
+sem1.grid(row=0,column=1)
+
+gr11 = Label(window,text= 'Grade')
+gr11.grid(row=1,column=1)
+
+gr12 = Label(window,text= 'Credit')
+gr12.grid(row=1,column=2)
+
+
+
+
+row1 = Label(window,text='Subject 1', padx = 10)
+row1.grid(row=2)
+
+sem1_grade_sub1 = StringVar()
+e21 = Entry(window,textvariable=sem1_grade_sub1)
+e21.grid(row=2,column=1)
+
+sem1_credit_sub1 = StringVar()
+e22 = Entry(window,textvariable=sem1_credit_sub1)
+e22.grid(row=2,column=2)
+
+
+
+
+row2 = Label(window,text='Subject 2', padx = 10)
+row2.grid(row=3)
+
+sem1_grade_sub2 = StringVar()
+e31 = Entry(window,textvariable=sem1_grade_sub2)
+e31.grid(row=3,column=1)
+
+sem1_credit_sub2 = StringVar()
+e32 = Entry(window,textvariable=sem1_credit_sub2)
+e32.grid(row=3,column=2)
+
+
+
+
+row3 = Label(window,text='Subject 3', padx = 10)
+row3.grid(row=4)
+
+sem1_grade_sub3 = StringVar()
+e41 = Entry(window,textvariable=sem1_grade_sub3)
+e41.grid(row=4,column=1)
+
+sem1_credit_sub3 = StringVar()
+e42 = Entry(window,textvariable=sem1_credit_sub3)
+e42.grid(row=4,column=2)
+
+
+
+
+row4 = Label(window,text='Subject 4', padx = 10)
+row4.grid(row=5)
+
+sem1_grade_sub4 = StringVar()
+e51 = Entry(window,textvariable=sem1_grade_sub4)
+e51.grid(row=5,column=1)
+
+sem1_credit_sub4 = StringVar()
+e52 = Entry(window,textvariable=sem1_credit_sub4)
+e52.grid(row=5,column=2)
+
+
+
+
+row5 = Label(window,text='Subject 5', padx = 10)
+row5.grid(row=6)
+
+sem1_grade_sub5 = StringVar()
+e61 = Entry(window,textvariable=sem1_grade_sub5)
+e61.grid(row=6,column=1)
+
+sem1_credit_sub5 = StringVar()
+e62 = Entry(window,textvariable=sem1_credit_sub5)
+e62.grid(row=6,column=2)
+
+
+
+
+row6 = Label(window,text='Subject 6', padx = 10)
+row6.grid(row=7)
+
+sem1_grade_sub6 = StringVar()
+e71 = Entry(window,textvariable=sem1_grade_sub6)
+e71.grid(row=7,column=1)
+
+sem1_credit_sub6 = StringVar()
+e72 = Entry(window,textvariable=sem1_credit_sub6)
+e72.grid(row=7,column=2)
+
+
+
+
+sem2 = Label(window,text='Semester 2',font=('Helvetica', 18, 'bold'))
+sem2.grid(row=8,column=1)
+
+gr21 = Label(window,text= 'Grade')
+gr21.grid(row=9,column=1)
+
+gr22 = Label(window,text= 'Credit')
+gr22.grid(row=9,column=2)
+
+
+
+
+row12 = Label(window,text='Subject 1', padx = 10)
+row12.grid(row=10)
+
+sem2_grade_sub1 = StringVar()
+e101 = Entry(window,textvariable=sem2_grade_sub1)
+e101.grid(row=10,column=1)
+
+sem2_credit_sub1 = StringVar()
+e102 = Entry(window,textvariable=sem2_credit_sub1)
+e102.grid(row=10,column=2)
+
+
+
+
+row22 = Label(window,text='Subject 2', padx = 10)
+row22.grid(row=11)
+
+sem2_grade_sub2 = StringVar()
+e111 = Entry(window,textvariable=sem2_grade_sub2)
+e111.grid(row=11,column=1)
+
+sem2_credit_sub2 = StringVar()
+e112 = Entry(window,textvariable=sem2_credit_sub2)
+e112.grid(row=11,column=2)
+
+
+
+
+row32 = Label(window,text='Subject 3', padx = 10)
+row32.grid(row=12)
+
+sem2_grade_sub3 = StringVar()
+e121 = Entry(window,textvariable=sem2_grade_sub3)
+e121.grid(row=12,column=1)
+
+sem2_credit_sub3 = StringVar()
+e122 = Entry(window,textvariable=sem2_credit_sub3)
+e122.grid(row=12,column=2)
+
+
+
+
+row42 = Label(window,text='Subject 4', padx = 10)
+row42.grid(row=13)
+
+sem2_grade_sub4 = StringVar()
+e131 = Entry(window,textvariable=sem2_grade_sub4)
+e131.grid(row=13,column=1)
+
+sem2_credit_sub4 = StringVar()
+e132 = Entry(window,textvariable=sem2_credit_sub4)
+e132.grid(row=13,column=2)
+
+
+
+
+row52 = Label(window,text='Subject 5', padx = 10)
+row52.grid(row=14)
+
+sem2_grade_sub5 = StringVar()
+e141 = Entry(window,textvariable=sem2_grade_sub5)
+e141.grid(row=14,column=1)
+
+sem2_credit_sub5 = StringVar()
+e142 = Entry(window,textvariable=sem2_credit_sub5)
+e142.grid(row=14,column=2)
+
+
+
+
+row62 = Label(window,text='Subject 6', padx = 10)
+row62.grid(row=15)
+
+sem2_grade_sub6 = StringVar()
+e151 = Entry(window,textvariable=sem2_grade_sub6)
+e151.grid(row=15,column=1)
+
+sem2_credit_sub6 = StringVar()
+e152 = Entry(window,textvariable=sem2_credit_sub6)
+e152.grid(row=15,column=2)
+
+'''
+helpbutton = Button(window,text='Help',width=10,command = how_to_use)
+helpbutton.grid(row=16,column=0)
+'''
+
+button = Button(window,text='Calculate',width=15,command= calculate)
+button.grid(row=16,column=1)
+
+clearbutton = Button(window,text='Clear',width=10,command = clear)
+clearbutton.grid(row=16,column=2)
+
+
+msg = Label(window,text='** Please provide the Grades in the Capital Letters.',font=('Helvetica', 10, 'bold'))
+msg.grid(rowspan=17,columnspan=3)
+
+
+window.mainloop()
